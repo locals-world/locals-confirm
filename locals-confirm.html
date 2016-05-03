@@ -49,6 +49,18 @@ Example:
       line-height: 52px;
       }
 
+      p {
+      @apply(--opensans-light);
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 24px;
+      -webkit-margin-before:0px;
+      -webkit-margin-after:0px;
+      -webkit-margin-start:0em;
+      -webkit-margin-end:0em;
+      margin: 0px;        
+      }
+
       .confirmbtns {
         width: 100%;
         @apply(--layout-horizontal);
@@ -60,7 +72,14 @@ Example:
 
     </style>
 
+    <template is="dom-if" if="{{small}}">
+    <p><content></content></p>
+    </template>
+
+    <template is="dom-if" if="{{!small}}">
     <h1><content></content></h1>
+    </template>
+
       <div class="confirmbtns">
         <locals-button txtcolor="red" icon="decline" on-tap="cancel"></locals-button>
         <locals-button txtcolor="green" icon="v" on-tap="confirm"></locals-button>
@@ -72,6 +91,11 @@ Example:
       is: 'locals-confirm',
 
       properties: {
+
+      small: {
+        type: Boolean,
+        value: false
+      }
       },
 
       // Element Lifecycle
