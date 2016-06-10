@@ -80,10 +80,24 @@ Example:
     <h1><content></content></h1>
     </template>
 
+
+    <template is="dom-if" if="{{!formsubmit}}">
       <div class="confirmbtns">
         <locals-button txtcolor="red" icon="decline" on-tap="cancel"></locals-button>
         <locals-button txtcolor="green" icon="v" on-tap="confirm"></locals-button>
       </div>
+    </template>
+
+    <template is="dom-if" if="{{formsubmit}}">
+      <div class="confirmbtns">
+        <locals-button txtcolor="red" icon="decline" on-tap="cancel"></locals-button>
+        <locals-button submit></locals-button>
+
+        <!-- <locals-button txtcolor="green" icon="v" on-tap="confirm"></locals-button> -->
+      </div>
+    </template>
+
+
   </template>
 
   <script>
@@ -95,7 +109,13 @@ Example:
       small: {
         type: Boolean,
         value: false
+      },
+
+      formsubmit: {
+        type: Boolean,
+        value: false
       }
+
       },
 
       // Element Lifecycle
