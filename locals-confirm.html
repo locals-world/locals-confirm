@@ -92,7 +92,7 @@ Example:
     <template is="dom-if" if="{{formsubmit}}">
       <div class="confirmbtns">
         <locals-button icon="declinenew" on-tap="cancel" confirmsmall></locals-button>
-        <locals-button submit></locals-button>
+        <locals-button submit="true" txtcolor="green"></locals-button>
       </div>
     </template>
 
@@ -162,14 +162,14 @@ Example:
         switch(this.type) {
             case 'formsubmit':
               this.formsubmit = true;
+              this.normal = false;
             break;
             case 'next':
               this.next = true;
-              console.log("!!! ** NEXT CONFIRM");
+              this.normal = false;
             break;
             default:
               this.normal = true;
-            console.log("!!! ** NORMAL CONFIRM", this.normal);
         }
       },
 
