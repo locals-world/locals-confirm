@@ -65,29 +65,45 @@ Example:
         width: 100%;
         @apply(--layout-horizontal);
         @apply(--layout-center-center);
+        margin-top: 10px;
       }
 
       .confirmbtns locals-button {
         margin: 10px 10px 10px 0px;
       }
 
+      .smallhorizontal {
+
+      }
+
     </style>
+
 
     <template is="dom-if" if="{{small}}">
     <p><content></content></p>
-    </template>
-
-    <template is="dom-if" if="{{!small}}">
-    <h1><content></content></h1>
-    </template>
-
-
-    <template is="dom-if" if="{{normal}}">
       <div class="confirmbtns">
         <locals-button icon="declinenew" on-tap="cancel" confirmsmall></locals-button>
         <locals-button txtcolor="green" icon="v" on-tap="confirm"></locals-button>
       </div>
     </template>
+
+
+    <template is="dom-if" if="{{normal}}">
+    <h1><content></content></h1>
+      <div class="confirmbtns">
+        <locals-button icon="declinenew" on-tap="cancel" confirmsmall></locals-button>
+        <locals-button txtcolor="green" icon="v" on-tap="confirm"></locals-button>
+      </div>
+    </template>
+
+    <template is="dom-if" if="{{blue}}">
+    <h1><content></content></h1>
+      <div class="confirmbtns">
+        <locals-button icon="declinenew" on-tap="cancel" confirmsmall></locals-button>
+        <locals-button txtcolor="blue" icon="v" on-tap="confirm"></locals-button>
+      </div>
+    </template>
+
 
     <template is="dom-if" if="{{formsubmit}}">
       <div class="confirmbtns">
@@ -102,6 +118,15 @@ Example:
         <locals-button icon="arrowrightfat" on-tap="confirm"></locals-button>
       </div>
     </template>
+
+    <template is="dom-if" if="{{smallhorizontal}}">
+      <div class="confirmbtns">
+        <p><content></content></p>
+        <locals-button icon="declinenew" on-tap="cancel" confirmsmall></locals-button>
+        <locals-button txtcolor="green" icon="v" on-tap="confirm"></locals-button>
+      </div>
+    </template>
+
 
   </template>
 
@@ -126,7 +151,22 @@ Example:
         value: false
       },
 
+      small: {
+        type: Boolean,
+        value: false
+      },
+
+      blue: {
+        type: Boolean,
+        value: false
+      },
+
       normal: {
+        type: Boolean,
+        value: false
+      },
+
+      smallhorizontal: {
         type: Boolean,
         value: false
       },
@@ -160,12 +200,24 @@ Example:
 
       _type: function(){
         switch(this.type) {
+            case 'small':
+              this.small = true;
+              this.normal = false;
+            break;
             case 'formsubmit':
               this.formsubmit = true;
               this.normal = false;
             break;
             case 'next':
               this.next = true;
+              this.normal = false;
+            break;
+            case 'blue':
+              this.blue = true;
+              this.normal = false;
+            break;
+            case 'smallhorizontal':
+              this.smallhorizontal = true;
               this.normal = false;
             break;
             default:
